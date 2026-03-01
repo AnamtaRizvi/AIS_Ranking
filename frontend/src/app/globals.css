@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+:root {
+  --background: #F7F7F8;
+  --foreground: #111827;
+  --scarlet: #CC0033;
+  --scarlet-hover: #b3002e;
+  --border: #E5E7EB;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-scarlet: var(--scarlet);
+  --color-border: var(--border);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
