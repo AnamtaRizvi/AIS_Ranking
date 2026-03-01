@@ -7,7 +7,7 @@ from app.api.router import api_router
 from app.db.session import engine, SessionLocal, Base
 from app.db.models import Category
 from app.core.journals import PAPER_CATEGORIES
-
+import os
 
 def seed_categories(db) -> None:
     for name in PAPER_CATEGORIES:
@@ -31,9 +31,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="PaperRanking API", lifespan=lifespan)
+allowed_origins = os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
+    allow_origins=[o.strip() for o in allowed_origins],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
