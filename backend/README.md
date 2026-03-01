@@ -9,8 +9,12 @@ python3 -m venv .venv
 source .venv/bin/activate   # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env
-# Edit .env: set OPENAI_API_KEY, optionally DATABASE_URL, OPENALEX_MAILTO
+# Edit .env: set OPENAI_API_KEY, optionally DATABASE_URL, OPENALEX_MAILTO, CORS_ORIGINS
 ```
+
+For frontend access in production, set:
+
+- `CORS_ORIGINS=https://<your-vercel-domain>,http://localhost:3000`
 
 ## Run API
 

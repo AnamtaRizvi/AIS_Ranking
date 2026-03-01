@@ -78,9 +78,14 @@ python cli.py classify --limit 100 --force
 ```bash
 cd frontend
 npm install
-# Optional: set NEXT_PUBLIC_API_BASE=http://localhost:8000 (default)
+# Optional: set NEXT_PUBLIC_API_URL=http://localhost:8000 (default)
 npm run dev
 ```
+
+### Deploy env vars
+
+- Vercel (`frontend`): `NEXT_PUBLIC_API_URL=https://ais-ranking.onrender.com`
+- Render (`backend`): `CORS_ORIGINS=https://<your-vercel-domain>,http://localhost:3000`
 
 - **/** – Organization rankings table (counts per category + total).
 - **/debug** – Journal counts + top orgs overall.
