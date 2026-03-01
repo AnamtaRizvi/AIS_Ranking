@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organization Rankings</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .summary {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .ranking-section {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #dc3545;
+        }
+        
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .ranking-table thead {
+            background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+            color: white;
+        }
+        
+        .ranking-table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .ranking-table td {
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .ranking-table tbody tr {
+            transition: background 0.2s;
+        }
+        
+        .ranking-table tbody tr:hover {
+            background: #f8f9fa;
+        }
+        
+        .ranking-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .rank-number {
+            font-weight: 700;
+            font-size: 1.2em;
+            color: #dc3545;
+            text-align: center;
+            width: 60px;
+        }
+        
+        .org-name {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .org-country {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 3px;
+        }
+        
+        .org-count {
+            font-weight: 600;
+            color: #495057;
+            text-align: center;
+        }
+        
+        .org-link {
+            color: #dc3545;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        
+        .org-link:hover {
+            text-decoration: underline;
+        }
+        
+        .count-badge {
+            background: linear-gradient(135deg, #dc3545 0%, #c0392b 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .category-stats {
+            margin-bottom: 40px;
+        }
+        
+        .category-stats-title {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #dc3545;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .category-card {
+            background: #ffffff;
+            border-left: 4px solid #dc3545;
+            border-radius: 8px;
+            padding: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #495057;
+            margin-bottom: 10px;
+        }
+        
+        .category-count {
+            font-size: 2em;
+            font-weight: 700;
+            color: #dc3545;
+            margin-bottom: 5px;
+        }
+        
+        .category-percentage {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Organization Rankings</h1>
+            <div class="summary">
+                Total Papers Analyzed: <span class="count-badge">3635</span>
+            </div>
+            <a href="papers_results.html" class="nav-link">← Back to Journals</a>
+        </div>
+        
+        <div class="content">
+
+            <div class="category-stats">
+                <div class="category-stats-title">Paper Categories</div>
+                <div class="category-grid">
+
+                    <div class="category-card">
+                        <div class="category-name">Core AI & Data Science Methods</div>
+                        <div class="category-count">358</div>
+                        <div class="category-percentage">31.2% of 1149 papers</div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-name">Accounting & Financial AI</div>
+                        <div class="category-count">324</div>
+                        <div class="category-percentage">28.2% of 1149 papers</div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-name">Information Systems & Applied Analytics</div>
+                        <div class="category-count">298</div>
+                        <div class="category-percentage">25.9% of 1149 papers</div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-name">Business Intelligence & Decision Support</div>
+                        <div class="category-count">132</div>
+                        <div class="category-percentage">11.5% of 1149 papers</div>
+                    </div>
+
+                    <div class="category-card">
+                        <div class="category-name">Engineering & Industrial AI</div>
+                        <div class="category-count">37</div>
+                        <div class="category-percentage">3.2% of 1149 papers</div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="ranking-section">
+                <div class="section-title">Top Organizations by Paper Count</div>
+                <table class="ranking-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 80px;">Rank</th>
+                            <th>Organization</th>
+                            <th style="width: 150px; text-align: center;">Paper Count</th>
+                            <th style="width: 100px;">Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr>
+                            <td class="rank-number">1</td>
+
+                            <td>
+                                <div class="org-name">Rutgers, The State University of New Jersey</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">168</td>
+                            <td>
+                                <a href="https://openalex.org/I102322142" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">2</td>
+                            <td>
+                                <div class="org-name">University of Southern California</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">67</td>
+                            <td>
+                                <a href="https://openalex.org/I1174212" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">3</td>
+                            <td>
+                                <div class="org-name">Bentley University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">66</td>
+                            <td>
+                                <a href="https://openalex.org/I139924743" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">4</td>
+                            <td>
+                                <div class="org-name">University of Waterloo</div>
+                                <div class="org-country">Country: CA</div>
+                            </td>
+                            <td class="org-count">64</td>
+                            <td>
+                                <a href="https://openalex.org/I151746483" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">5</td>
+                            <td>
+                                <div class="org-name">University of South Florida</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">54</td>
+                            <td>
+                                <a href="https://openalex.org/I2613432" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">6</td>
+                            <td>
+                                <div class="org-name">University of Central Florida</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">53</td>
+                            <td>
+                                <a href="https://openalex.org/I106165777" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">7</td>
+                            <td>
+                                <div class="org-name">Iowa State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">39</td>
+                            <td>
+                                <a href="https://openalex.org/I173911158" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">8</td>
+                            <td>
+                                <div class="org-name">University of Melbourne</div>
+                                <div class="org-country">Country: AU</div>
+                            </td>
+                            <td class="org-count">35</td>
+                            <td>
+                                <a href="https://openalex.org/I165779595" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">9</td>
+                            <td>
+                                <div class="org-name">Arizona State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">35</td>
+                            <td>
+                                <a href="https://openalex.org/I55732556" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">10</td>
+                            <td>
+                                <div class="org-name">University of Queensland</div>
+                                <div class="org-country">Country: AU</div>
+                            </td>
+                            <td class="org-count">32</td>
+                            <td>
+                                <a href="https://openalex.org/I165143802" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">11</td>
+                            <td>
+                                <div class="org-name">University of Hawaiʻi at Mānoa</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">31</td>
+                            <td>
+                                <a href="https://openalex.org/I117965899" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">12</td>
+                            <td>
+                                <div class="org-name">Florida Atlantic University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">30</td>
+                            <td>
+                                <a href="https://openalex.org/I63772739" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">13</td>
+                            <td>
+                                <div class="org-name">DePaul University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">30</td>
+                            <td>
+                                <a href="https://openalex.org/I118353179" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">14</td>
+                            <td>
+                                <div class="org-name">Southern California University for Professional Studies</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">30</td>
+                            <td>
+                                <a href="https://openalex.org/I2800817003" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">15</td>
+                            <td>
+                                <div class="org-name">Monash University</div>
+                                <div class="org-country">Country: AU</div>
+                            </td>
+                            <td class="org-count">29</td>
+                            <td>
+                                <a href="https://openalex.org/I56590836" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">16</td>
+                            <td>
+                                <div class="org-name">University of North Texas</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">29</td>
+                            <td>
+                                <a href="https://openalex.org/I123534392" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">17</td>
+                            <td>
+                                <div class="org-name">Texas Tech University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">28</td>
+                            <td>
+                                <a href="https://openalex.org/I12315562" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">18</td>
+                            <td>
+                                <div class="org-name">Universitat Autònoma de Barcelona</div>
+                                <div class="org-country">Country: ES</div>
+                            </td>
+                            <td class="org-count">28</td>
+                            <td>
+                                <a href="https://openalex.org/I123044942" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">19</td>
+                            <td>
+                                <div class="org-name">University of Kansas</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">27</td>
+                            <td>
+                                <a href="https://openalex.org/I146416000" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">20</td>
+                            <td>
+                                <div class="org-name">Mississippi State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">26</td>
+                            <td>
+                                <a href="https://openalex.org/I99041443" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">21</td>
+                            <td>
+                                <div class="org-name">Southwestern University of Finance and Economics</div>
+                                <div class="org-country">Country: CN</div>
+                            </td>
+                            <td class="org-count">26</td>
+                            <td>
+                                <a href="https://openalex.org/I204831749" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">22</td>
+                            <td>
+                                <div class="org-name">North Carolina State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">25</td>
+                            <td>
+                                <a href="https://openalex.org/I137902535" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">23</td>
+                            <td>
+                                <div class="org-name">University of Delaware</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">25</td>
+                            <td>
+                                <a href="https://openalex.org/I86501945" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">24</td>
+                            <td>
+                                <div class="org-name">Michigan State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">23</td>
+                            <td>
+                                <a href="https://openalex.org/I87216513" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">25</td>
+                            <td>
+                                <div class="org-name">University of Nevada, Las Vegas</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">23</td>
+                            <td>
+                                <a href="https://openalex.org/I133999245" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">26</td>
+                            <td>
+                                <div class="org-name">Centre National de la Recherche Scientifique</div>
+                                <div class="org-country">Country: FR</div>
+                            </td>
+                            <td class="org-count">23</td>
+                            <td>
+                                <a href="https://openalex.org/I1294671590" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">27</td>
+                            <td>
+                                <div class="org-name">University of Houston - Clear Lake</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">22</td>
+                            <td>
+                                <a href="https://openalex.org/I52913039" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">28</td>
+                            <td>
+                                <div class="org-name">University at Albany, State University of New York</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">22</td>
+                            <td>
+                                <a href="https://openalex.org/I392282" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">29</td>
+                            <td>
+                                <div class="org-name">University of Arkansas at Fayetteville</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">22</td>
+                            <td>
+                                <a href="https://openalex.org/I78715868" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">30</td>
+                            <td>
+                                <div class="org-name">Florida State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I103163165" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">31</td>
+                            <td>
+                                <div class="org-name">Virginia Commonwealth University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I184840846" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">32</td>
+                            <td>
+                                <div class="org-name">Bowling Green State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I157417397" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">33</td>
+                            <td>
+                                <div class="org-name">La Rochelle Université</div>
+                                <div class="org-country">Country: FR</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I78744979" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">34</td>
+                            <td>
+                                <div class="org-name">Indian Statistical Institute</div>
+                                <div class="org-country">Country: IN</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I6498739" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">35</td>
+                            <td>
+                                <div class="org-name">Chinese Academy of Sciences</div>
+                                <div class="org-country">Country: CN</div>
+                            </td>
+                            <td class="org-count">21</td>
+                            <td>
+                                <a href="https://openalex.org/I19820366" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">36</td>
+                            <td>
+                                <div class="org-name">University of North Carolina Wilmington</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">20</td>
+                            <td>
+                                <a href="https://openalex.org/I153901656" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">37</td>
+                            <td>
+                                <div class="org-name">Georgia State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">20</td>
+                            <td>
+                                <a href="https://openalex.org/I181565077" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">38</td>
+                            <td>
+                                <div class="org-name">University of Missouri</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">20</td>
+                            <td>
+                                <a href="https://openalex.org/I76835614" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">39</td>
+                            <td>
+                                <div class="org-name">Brigham Young University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">20</td>
+                            <td>
+                                <a href="https://openalex.org/I100005738" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">40</td>
+                            <td>
+                                <div class="org-name">Auburn University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">19</td>
+                            <td>
+                                <a href="https://openalex.org/I82497590" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">41</td>
+                            <td>
+                                <div class="org-name">Concordia University</div>
+                                <div class="org-country">Country: CA</div>
+                            </td>
+                            <td class="org-count">18</td>
+                            <td>
+                                <a href="https://openalex.org/I60158472" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">42</td>
+                            <td>
+                                <div class="org-name">École de Technologie Supérieure</div>
+                                <div class="org-country">Country: CA</div>
+                            </td>
+                            <td class="org-count">18</td>
+                            <td>
+                                <a href="https://openalex.org/I9736820" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">43</td>
+                            <td>
+                                <div class="org-name">University of Kentucky</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I143302722" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">44</td>
+                            <td>
+                                <div class="org-name">California State University, Northridge</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I157638225" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">45</td>
+                            <td>
+                                <div class="org-name">Miami University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I83328450" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">46</td>
+                            <td>
+                                <div class="org-name">University of Memphis</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I94658018" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">47</td>
+                            <td>
+                                <div class="org-name">Montclair State University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I166088655" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">48</td>
+                            <td>
+                                <div class="org-name">West Virginia University</div>
+                                <div class="org-country">Country: US</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I12097938" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">49</td>
+                            <td>
+                                <div class="org-name">Laboratoire Lorrain de Recherche en Informatique et ses Applications</div>
+                                <div class="org-country">Country: FR</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I4210121838" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="rank-number">50</td>
+                            <td>
+                                <div class="org-name">Australian Regenerative Medicine Institute</div>
+                                <div class="org-country">Country: AU</div>
+                            </td>
+                            <td class="org-count">17</td>
+                            <td>
+                                <a href="https://openalex.org/I2801239119" target="_blank" class="org-link">Link</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            Data fetched from <a href="https://openalex.org" target="_blank" style="color: #dc3545;">OpenAlex</a> API
+        </div>
+    </div>
+</body>
+</html>

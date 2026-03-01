@@ -1,0 +1,16 @@
+# Optional: Postgres for production
+# docker-compose up -d
+# DATABASE_URL=postgresql://user:pass@localhost:5432/paperranking
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: paperranking
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:

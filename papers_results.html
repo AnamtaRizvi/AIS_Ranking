@@ -1,0 +1,3107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAlex Paper Fetcher - Results</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #e4dee4 0%, #ed6c6c 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .summary {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .journal-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .journal-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .journal-name {
+            font-size: 1.4em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .journal-code {
+            background: #667eea;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+        
+        .journal-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+        }
+        
+        .info-label {
+            font-size: 0.85em;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        
+        .info-value {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .count-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1.1em;
+            font-weight: 600;
+            display: inline-block;
+        }
+        
+        .papers-list {
+            margin-top: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 10px;
+            background: white;
+        }
+        
+        .paper-item {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.2s;
+        }
+        
+        .paper-item:hover {
+            background: #f8f9fa;
+        }
+        
+        .paper-item:last-child {
+            border-bottom: none;
+        }
+        
+        .paper-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .paper-meta {
+            font-size: 0.85em;
+            color: #666;
+        }
+        
+        .paper-link {
+            color: #667eea;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        
+        .paper-link:hover {
+            text-decoration: underline;
+        }
+        
+        .no-papers {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9em;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📚 OpenAlex Paper Fetcher</h1>
+            <div class="summary">
+                Total Papers Fetched: <span class="count-badge">3635</span>
+            </div>
+            <a href="organization_rankings.html" class="nav-link">View Organization Rankings →</a>
+        </div>
+        
+        <div class="content">
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">AIS Educator Journal</div>
+                    <div class="journal-code">AISEJ</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">1935-8156</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">90</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S4210208962</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">Applying Internal Control Concepts Using Database Design: An Educational Case</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-19.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406343985" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Security Considerations for Implementing Accounting Processes in the Cloud</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-19.1.35" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408414325" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Does Using Real Organizations for Team Projects in an AIS Class Make a Difference?</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-19.1.17" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408414291" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Building Higher-Order Thinking Skills Through Assessment of User Account Access</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.39" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400255486" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editors’ Report and Commentary on Volume 18</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.77" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404417092" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Analyzing Characteristics of ERP Adopters in the AIS Curriculum</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.20" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400255465" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using LinkedIn for Career Building</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.65" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404416876" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Preparing Accounting Students for Careers Utilizing Data Analytics: Curriculum Innovation Steps and Challenges</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400256287" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Integrating Business Cycles and Transaction Processing: The Kayak Roll Case</div>
+                        <div class="paper-meta">
+                            Published: 2023-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-18.1.50" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403371995" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Articles Published in the First 14 Volumes (2006-2019) of the AIS Educator Journal: An Editors’ Classification and Analysis</div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.18" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4391968289" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using the 2017 COSO ERM Framework to Examine Risks at Wells Fargo</div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4390517063" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Bibliometric Analysis of the <i>AIS Educator Journal</i></div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.30" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4391981485" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editors’ Report and Commentary on Volume 17</div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.55" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400261219" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Teaching Students to Identify, Document, and Assess Internal Controls</div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4390358956" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Introducing Digital Acumen Into Accounting Information Systems Courses: A Design Science Approach</div>
+                        <div class="paper-meta">
+                            Published: 2022-07-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-17.1.41" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4399348243" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Bluth Company: An Adobe Acrobat Case Motivated by Practitioner Feedback</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4360928143" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using COSO to Mitigate Service Learning Project Risk</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.40" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4384936516" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Teaching Data Joins: A Conceptual Approach Using SQL, Alteryx, and Tableau</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.60" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4385010869" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Data Analytics in Accounting: Visualizing Corporate Income Inequality</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.19" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4381943355" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editors' Report and Commentary on Volume 16</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.117" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4386113454" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Data Analytics Elective Course for a Master of Science in Accountancy Program</div>
+                        <div class="paper-meta">
+                            Published: 2021-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-16.1.105" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4386043779" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Preparing for the Hybridization of the Accounting Profession: A CISA Boot Camp Case Study</div>
+                        <div class="paper-meta">
+                            Published: 2020-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-15.1.25" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3091426368" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Fraud at the Public Park Community School District</div>
+                        <div class="paper-meta">
+                            Published: 2020-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-15.1.90" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3126979462" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Understanding the COSO 2013 Framework: Four Short Cases for Use in AIS and Auditing Courses</div>
+                        <div class="paper-meta">
+                            Published: 2020-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-15.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3040341405" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Topics for Your Undergraduate Accounting Information Systems (AIS) Course-An Exploratory Study of Information Technology (IT) Skills and Firm Size</div>
+                        <div class="paper-meta">
+                            Published: 2020-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-15.1.58" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3124825196" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editor Report and Comments</div>
+                        <div class="paper-meta">
+                            Published: 2020-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-15.1.101" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3164242396" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Topics for the Accounting Information Systems Course: A Dual Perspective Approach from Educators and Employers</div>
+                        <div class="paper-meta">
+                            Published: 2019-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-14.1.36" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2986386445" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Glimpse into the Sausage Factory: <i>AISEJ</i> Editor Report</div>
+                        <div class="paper-meta">
+                            Published: 2019-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-14.1.56" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W3037132734" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">IT General Controls Testing: Assessing the Effectiveness of User Access Management</div>
+                        <div class="paper-meta">
+                            Published: 2019-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-14.1.15" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2944408046" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Singapore Mass Rapid Transit (SMRT): Operations and Revenue Cycle</div>
+                        <div class="paper-meta">
+                            Published: 2019-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-14.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2943299051" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Lemonade Stand: An Elementary Case for Introducing Data Analytics</div>
+                        <div class="paper-meta">
+                            Published: 2018-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-13.1.29" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2782581048" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Accounting Documentation Software: An Overview of Options and Results from a Lucidchart Software Evaluation</div>
+                        <div class="paper-meta">
+                            Published: 2018-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-13.1.62" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2883139202" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Ranking Accounting Scholars Publishing AIS and Technology Research in Accounting Education</div>
+                        <div class="paper-meta">
+                            Published: 2018-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-13.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2766932732" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Beyond Excel: Software Tools and the Accounting Curriculum</div>
+                        <div class="paper-meta">
+                            Published: 2018-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-13.1.44" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2808135123" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Manual vs. Computerized Practice Set: Which Achieves Learning Objectives the Best?</div>
+                        <div class="paper-meta">
+                            Published: 2017-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-12.1.25" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2617714588" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Integrating Accounting Themes with Enterprise System Experiences: An Accounting Department's Journey</div>
+                        <div class="paper-meta">
+                            Published: 2017-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-12.1.34" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2738169881" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Understanding, Evaluating, and Monitoring Internal Control Systems: A Case and Spreadsheet Based Pedagogical Approach</div>
+                        <div class="paper-meta">
+                            Published: 2017-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-12.1.59" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2735001951" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using an Online Tutorial to Teach REA Data Modeling in Accounting Information Systems Courses</div>
+                        <div class="paper-meta">
+                            Published: 2017-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-12.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2521238953" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Introducing Students to Understanding Business Processes and Identifying Data Sources</div>
+                        <div class="paper-meta">
+                            Published: 2017-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-12.1.20" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2609855188" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Purchasing Process Internal Control Assessment: A Comprenhensive Case Study Using Data Analytic Software</div>
+                        <div class="paper-meta">
+                            Published: 2016-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-11.1.9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2576249862" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">SQL Injection: A Demonstration and Implications for Accounting Students</div>
+                        <div class="paper-meta">
+                            Published: 2016-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-11.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2561800996" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Assembly FG: An Education Case Study Using QuickBooks as the AIS for a Small Manufacturing Business</div>
+                        <div class="paper-meta">
+                            Published: 2015-06-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.26" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2495215432" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">An Introduction to Access 2013</div>
+                        <div class="paper-meta">
+                            Published: 2015-06-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.32" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2460509572" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Merchandise Hardware: A Case Designed to Teach Students Generalized Audit Software Using Microsoft Access</div>
+                        <div class="paper-meta">
+                            Published: 2015-06-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2516593663" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">It's about Time! Introducing Students to the Concept of Billable Hours and Improving Their Excel Skills By Creating a Spreadsheet to Track Their Time</div>
+                        <div class="paper-meta">
+                            Published: 2015-06-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.37" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2485495500" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Skills vs. Concepts: A Comparison of Practitioners' and Educators' Preferences for Accounting Information Systems Proficiencies</div>
+                        <div class="paper-meta">
+                            Published: 2015-06-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.5" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2512732126" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Use of Software and Collaboration Tools to Integrate AIS and MIS Curricula</div>
+                        <div class="paper-meta">
+                            Published: 2015-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-10.1.43" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2553306281" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The An Excel-Based, Multi-Year Accounting Cycle Project for either the First Intermediate Accounting Course or an AIS Course</div>
+                        <div class="paper-meta">
+                            Published: 2014-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-9.1.41" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2220451196" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Importance of Accounting Information Systems in the Accounting Curricula: A CPA Perspective</div>
+                        <div class="paper-meta">
+                            Published: 2014-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-9.1.24" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2208948880" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Separating Cats from Dogs: A Case Designed to Enhance Students' Abilities to Identify Incompatible Duties and Employee Red Flags</div>
+                        <div class="paper-meta">
+                            Published: 2014-01-01
+                            <a href="https://doi.org/https://doi.org/10.3194/1935-8156-9.1.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W2230908244" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 40 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">International Journal of Accounting Information Systems</div>
+                    <div class="journal-code">IJAIS</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">1467-0895</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">753</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S38901890</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">Government intervention or market incentives: which more effectively accelerates enterprise IT adoption in accounting systems? evidence from China’s financial shared service centers</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-06
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100770" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4417073278" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Board</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-21
+                            <a href="https://doi.org/https://doi.org/10.1016/s1467-0895(25)00040-5" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416518990" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Artificial intelligence and accounting research: a framework and agenda</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-20
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100760" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416550281" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Management accountants’ role transitions in IT projects: A job crafting perspective</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-06
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100759" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415955509" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The plight of digitalization: Technostress and accountants’ professional identity</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-31
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100755" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412786505" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploring the role of digital governance: The effect of audit digitalization on firms’ internal control weaknesses in China</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-23
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100756" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412702190" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A practical guide to implementing ChatGPT as a secondary coder in qualitative research</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-16
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100754" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412459377" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Unlocking bankruptcy clues: A novel sentence-based machine learning approach</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-15
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100751" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412441857" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Discriminative meets generative: Automated information retrieval from unstructured corporate documents via (large) language models</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-15
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100750" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412441950" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The influence of misdirecting visual cues and alternative terminology on digital financial statement search efficiency: evidence from an eye tracking experiment</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-15
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100753" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412441820" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Measuring the pervasiveness of IT general controls: A model and empirical validation</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-23
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100752" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411553689" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploring Large Language Models in external audits: Implications and ethical considerations</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-05
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100748" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411050504" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Digital transformation and cybersecurity risks</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-05
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100749" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411056865" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Audit effort in the digital Era: Uncovering the dynamic interplay of business strategy and digital transformation</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-08
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100747" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410202985" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Divergence from Benford’s law fails to measure financial statement accuracy</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-05
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100745" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410077721" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">CEO gender and cybersecurity: The role of female CEOs in mitigating data breach risks</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-22
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100746" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409657849" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Excessive custom XBRL tag usage in 10-K filings and SEC oversight</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-19
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100742" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408594841" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Bankruptcy prediction: Integration of convolutional neural networks and explainable artificial intelligence techniques</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-13
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100744" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408396727" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Earnings management visualization and prediction using machine learning methods</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-10
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100743" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408295144" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Framework for the Structured Implementation of Process Mining for Audit Tasks</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-10
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100727" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408271685" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Segregation of duties in accounting systems: A framework</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-15
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100725" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407597322" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Accelerating the future of audit technologies: Introducing the special issue and emphasizing future research directions</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-13
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100740" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407482453" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The increased role of advanced technology and automation in audit: A delphi study</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-11
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100733" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407356825" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Auditors’ decision-making aid for going concern audit opinions through machine learning analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-07
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100732" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407237740" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Website disclosure and financial performance: Evidence from U.S. hospitals using a textual analysis approach</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-01
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100741" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407054844" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Adaptive structural audit processes as shaped by emerging technologies</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-29
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100735" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406925038" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Artificial intelligence auditability and auditor readiness for auditing artificial intelligence systems</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-28
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100739" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406926331" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Application of consumer search volume in auditing</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-27
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100736" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406884287" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A framework for dynamic blockchain-based data auditing</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-24
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100737" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406789515" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using process mining as an assurance tool in the three-lines-model</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-23
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100731" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406749651" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Characteristics of cybersecurity and IT involvement by the IA activity</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-22
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100726" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406698445" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">When auditing Meets Blockchain: A study on applying blockchain smart contracts in auditing</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-22
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100730" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406721946" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Impact of reporting information security breaches, accounting quality, and the opportunistic disclosure of good news and bad news</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-22
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100729" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406713747" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Unveiling the rivalry of cloud ERP dialectics, underpinning logics and roles of accounting and information system professionals</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100728" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406674931" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Investigating the impacting factors for the audit professionals to adopt data analysis and artificial intelligence: Empirical evidence for Spain</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100738" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406675298" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Challenges and opportunities for artificial intelligence in auditing: Evidence from the field</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2025.100734" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406636601" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Board</div>
+                        <div class="paper-meta">
+                            Published: 2024-11-23
+                            <a href="https://doi.org/https://doi.org/10.1016/s1467-0895(24)00052-6" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404653508" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Bridging the gap in talent: A framework for interdisciplinary research on autism spectrum disorder persons in accounting and information systems</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100712" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403588402" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A scoping review of ChatGPT research in accounting and finance</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-07
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100715" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403201088" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Digital transformation voluntary disclosure: Insights from leading European companies</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-29
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100711" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402951337" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Understanding cybersecurity breach contagion effects: The role of the loss heuristic and internal controls</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-26
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100714" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402884684" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Internal control risk disclosure, media coverage and stock price crash risk: Evidence from China</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-23
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100710" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402734370" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The application of continuous audit and monitoring methodology: A government medication procurement case</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100713" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402707586" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploring accounting and AI using topic modelling</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-21
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100709" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402695933" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Board</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-26
+                            <a href="https://doi.org/https://doi.org/10.1016/s1467-0895(24)00038-1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401875325" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The impact of cybersecurity risk management strategy disclosure on investors’ judgments and decisions</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-10
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100696" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401496424" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Artificial intelligence co-piloted auditing</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-15
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100698" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400654973" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Fair value estimates for illiquid cryptocurrency</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-13
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100700" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400601937" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Does cybersecurity maturity level assurance improve cybersecurity risk management in supply chains?</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-11
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100695" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400539470" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Board roles required for IT governance to become an integral component of corporate governance</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-06
+                            <a href="https://doi.org/https://doi.org/10.1016/j.accinf.2024.100694" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400386654" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 703 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">International Journal on Document Analysis and Recognition (IJDAR)</div>
+                    <div class="journal-code">IJDAR</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">1433-2825</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">735</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S90108747</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">Handwritten text line segmentation with TextSAM: An enhanced segment anything model via multi-module fusion</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-07
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00567-1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7119120095" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Comic character recognition using graph embedding in graph representations</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-04
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00568-0" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7118126494" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Graph-Augmented Multi-Stage Transformer Model for Document Layout Understanding</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-13
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00566-2" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7115007288" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Skeleton-guided artistic text recognition</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-12
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00565-3" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7114889691" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">BoundingDocs: a Unified Dataset for Document Question Answering with Spatial Annotations</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-06
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00563-5" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406189751" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Data rescue of historical tables through semi-supervised table structure recognition</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00562-6" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416870303" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">InkSynth: recognizing Bengali compound characters with synthesized data and deep fusion networks</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-20
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00561-7" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416437673" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">HW-MLVQA: a novel handwritten multilingual dataset for visual question answering and evaluation</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-13
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00560-8" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415106390" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">CalliNet: a triplet network for chinese calligraphy style classification</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-08
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00559-1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414929823" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Devanagari character encoded mix-merge vision transformer for robust document layout analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-22
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00556-4" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414393686" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">ArchiteCAD: a large-scale architectural CAD dataset for symbol spotting towards CAD-to-BIM conversion</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-16
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00557-3" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414253224" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Optimizing identity documents classification in online systems: A comparative analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-08
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00555-5" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414059432" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Correction to: Exploring the effectiveness of data-centric AI approaches to developing a prescription recognition system</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-08
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00550-w" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414068618" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Addressing the attention drift problem for khmer long textline recognition</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-08
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00554-6" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414064566" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">From pixels to tables: reconstructing complex tables from document images</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-02
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00553-7" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413902834" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Special issue on advanced topics in document analysis (2025 ICDAR-IJDAR journal track)</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00551-9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414217111" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Towards the digitization of Kurdish handwritten script using deep learning: a comprehensive analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-27
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00545-7" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413766219" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Classification and feature extraction of text from hindi document for optical character recognition</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-11
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00552-8" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413218886" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exemplar sampling algorithm for instance incremental learning on imbalanced document datasets</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-31
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00549-3" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412782253" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">How well do MLLMs understand handwritten legal documents? A novel dataset for benchmarking</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-29
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00548-4" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412708667" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Leveraging multimodal fusion for emotion detection in comics: integrating text and visual cues with RoBERTa and vision transformers</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-24
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00546-6" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412639420" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A benchmark image dataset of unconstrained isolated Assamese handwritten compound characters</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-17
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00534-w" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413069558" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Towards automatic efficient recognition of multiresolution offline handwritten Urdu text using swin transformers</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-12
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00544-8" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412361877" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">On self-supervision in historical handwritten document segmentation</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00538-6" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411906913" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Tabular context-aware optical character recognition and tabular data reconstruction for historical records</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00543-9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411902268" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Character recognition for Greek squeezes</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-30
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00540-y" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411790245" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Enhancing music score analysis with Monte Carlo dropout: a probabilistic approach to staff-region detection</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-20
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00541-x" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411475647" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Few-Shot Quaternion-valued Correlation Squeeze Network for Document Image Layout Segmentation</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-19
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00539-5" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411464475" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">SlimDoc: lightweight distillation of document transformer models</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-18
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00542-w" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411422051" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Neurosymbolic Information Extraction from Transactional Documents</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-16
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00530-0" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411349910" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Binary Neighbors Model (BNM) : An LBP-Inspired Descriptor for Offline Writer Identification</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-13
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00536-8" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411258529" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">PAST: Pairwise attention swin transformer for offline signature verification</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-11
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00537-7" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411203983" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Multi-level Style Control for Chinese Handwriting Generation</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-07
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00533-x" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411121938" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A structured document understanding model based on gate mechanism and cross attention</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-07
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00535-9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411116110" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The PARES Database: Information Extraction over Historical Parish Records</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-28
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00531-z" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410826117" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">An Object Detection-Based Character Recognition Method for Ottoman Handwritten Documents</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-28
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00529-7" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410802303" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Revisiting Table Detection Datasets for Visually Rich Documents</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-23
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00527-9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410636570" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploring the effectiveness of data-centric AI approaches to developing a prescription recognition system</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-22
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00525-x" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410615508" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Low-Intervention Dual-Loop Iterative Process for Efficient Dataset Expansion and Classification in Palm Leaf Manuscript Analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-18
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00532-y" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410468298" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Comprehensive Survey of Floor Plan Image Analysis and Related Applications</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-18
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00528-8" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410467778" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Human-in-the-loop tabular data extraction methods for historical climate data rescue</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-08
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00524-y" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410144136" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Recent advances in text line segmentation and baseline detection in historical document images: a systematic review</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-07
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00526-w" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410156359" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Lightweight cross-attention-based HookNet for historical handwritten document layout analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-19
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00519-9" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409591086" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Scrambled text: fine-tuning language models for OCR error correction using synthetic data</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-17
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00522-0" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409522117" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">LiGT: layout-infused generative transformer for visual question answering on Vietnamese receipts</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-05
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00515-z" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409191148" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">M2SM: multi modal signature matching network utilizing spatio-temporal features extracted from online signature</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-04
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00521-1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409189453" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">An adaptive multi-head self-attention coupled with attention filtered LSTM for advanced scene text recognition</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-03
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00523-z" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409156287" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Bi-VLDoc: bidirectional vision-language modeling for visually-rich document understanding</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-27
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00518-w" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408974494" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">VertexNet: a table structure recognition model based on key points for complex scenes</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-21
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00516-y" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408705376" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">TextTriangle: an end-to-end textspotter with piecewise linear alignment</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-12
+                            <a href="https://doi.org/https://doi.org/10.1007/s10032-025-00517-x" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408385212" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 685 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">Intelligent systems in accounting, finance and management/Intelligent systems in accounting, finance & management</div>
+                    <div class="journal-code">ISAFM</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">2160-0074</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">433</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S4394735491</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">Dynamic Portfolio Optimization of Cryptocurrencies via Clustering Methods</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-08
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70032" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7119536720" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">AI Chatbot as IFRS Advisory Tool: GPT‐4 Experimental Design</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-02
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70031" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7118096834" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-26
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v33.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117309380" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Intelligent Product Concept Design Method Based on Semantics of Competing E‐Commerce Products</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-25
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70025" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117292698" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-25
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70026" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117312345" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Addressing the Exception Prioritization Problem in Continuous Auditing Systems With Thresholding</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70022" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4417187204" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Complexity and Heterogeneity in Cryptocurrency Prices: An Analysis Based on Gaussian Mixture Model and Consensus Clustering</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70024" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7116957185" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Pay for Performance: A Comparative Analysis of Machine Learning Models for CEO Compensation Prediction</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70023" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416912293" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Financial Statement Fraud Detection via Large Language Models</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-30
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70021" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416839748" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Identifying Going Concern Audit Opinions Using Supervised Machine Learning</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-14
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70020" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415151827" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Balanced Underbagged Ensemble Approach for Classifying Highly Imbalanced Datasets in the Insurance and Financial Sectors</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-13
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70018" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415176294" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Lost in the Modeling Stage: A Comparative Analysis of Machine Learning Models for Real Estate Data</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-12
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70019" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415096319" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-12
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1562" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4415095463" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">FinSentiment: Predicting Financial Sentiment Through Transfer Learning</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70015" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414149121" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Manual Journal Entry Testing: Integrating Natural Language Processing and Deep Learning</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70016" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414000692" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Introducing DART: A Novel Deep Adaptive Upsampling Technique for Handling Class Imbalance</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-07
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70014" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413135014" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Prediction of Volatility Using Monetary Rate and GARCH‐LSTM Hybrid Model</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-02
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70013" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412853519" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Developing an Accounting Virtual Assistant Through Supervised Fine‐Tuning (SFT) of a Small Language Model (SLM)</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-28
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70011" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412733533" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Social Media, Traditional News and Stock Returns: A Causal Mediation Analysis</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-17
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70012" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413068118" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial: Analysis of Sentiment Estimates and Cognitive Fallacies in Large Language Models</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-14
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70010" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412417206" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-07
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v32.3" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412098624" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Comparing the Prediction Performance of Random Forest, Lasso, and Logit in the Context of IPO Withdrawal</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-06
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70009" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412098631" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-06
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1560" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412098621" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Wisdom of Electronic Employee Crowds—Employee Reviews as a Data Source in Finance, Accounting, Economics, and Management Research: A Systematic Literature Review</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70007" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410933904" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Multi‐Objective Bayesian Optimization of Deep Reinforcement Learning for Environmental, Social, and Governance (ESG) Financial Portfolio Management</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70008" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411460463" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-07
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v32.2" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409209091" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1556" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408802969" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Causal Network Representations in Factor Investing</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70001" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408859730" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Generating Synthetic Journal‐Entry Data Using Variational Autoencoder</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70005" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408860558" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Can Deep Learning Models Enhance the Accuracy of Agricultural Price Forecasting? Insights From India</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70002" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408775603" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Improving ETF Prediction Through Sentiment Analysis: A DeepAR and FinBERT Approach With Controlled Seed Sampling</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70004" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408879071" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Open‐Source Data‐Driven Prediction of Environmental, Social, and Governance (ESG) Ratings Using Deep Learning Techniques</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70003" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408775510" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v32.1" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408775692" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v31.4" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406430929" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Evaluation of the Financial Distress of Hospitals Through Machine Learning: An Application of AI in Healthcare Industry</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.70000" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406430798" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1536" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406430919" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Technological Innovation of the Metaverse in Financial Sector: Current State, Opportunities, and Open Challenges</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1566" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402253792" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-09
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v31.3" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401463302" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Liquidity forecasting at corporate and subsidiary levels using machine learning</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-09
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1565" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401462062" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-09
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1535" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401464311" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Identification of fraudulent financial statements through a multi‐label classification approach</div>
+                        <div class="paper-meta">
+                            Published: 2024-06-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1564" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4399783372" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Predicting carbon and oil price returns using hybrid models based on machine and deep learning</div>
+                        <div class="paper-meta">
+                            Published: 2024-06-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1563" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4399383430" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Toward an extended framework of exhaust data for predictive analytics: An empirical approach</div>
+                        <div class="paper-meta">
+                            Published: 2024-04-25
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1554" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4395464601" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Neural stochastic agent‐based limit order book simulation with neural point process and diffusion probabilistic model</div>
+                        <div class="paper-meta">
+                            Published: 2024-04-05
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1553" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4393988342" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">None</div>
+                        <div class="paper-meta">
+                            Published: 2024-04-05
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.v31.2" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4394004801" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Internet financial reporting disclosure index of e‐commerce businesses on social media</div>
+                        <div class="paper-meta">
+                            Published: 2024-04-05
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1550" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4393988433" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Issue Information</div>
+                        <div class="paper-meta">
+                            Published: 2024-04-04
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1534" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4393987852" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Accounting journal entries as a long‐term multivariate time series: Forecasting wholesale warehouse output</div>
+                        <div class="paper-meta">
+                            Published: 2024-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1551" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4392661240" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Nowcasting directional change in high frequency FX markets</div>
+                        <div class="paper-meta">
+                            Published: 2024-03-01
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1552" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4392811003" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Text‐based sentiment analysis in finance: Synthesising the existing literature and exploring future directions</div>
+                        <div class="paper-meta">
+                            Published: 2024-02-25
+                            <a href="https://doi.org/https://doi.org/10.1002/isaf.1549" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4392161509" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 383 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">Journal of Emerging Technologies in Accounting</div>
+                    <div class="journal-code">JETA</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">1558-7940</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">453</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S116843975</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Color of Change: Character Types and Employee Perception of RPA</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2025-007" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4417201323" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Intellectual Capital and Intention to Adopt Cloud-Based Accounting: Unveiling the Impact of Organizational Learning Capability and Perceived Benefits</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-027" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7118163078" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Risk Perceptions in RPA Implementation: Exploring Internal Auditors' Views on Automation Levels and Resource Selection</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-047" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416008152" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Predictors of Life Satisfaction through Financial Anxiety and Financial Optimism among Accounting Students</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-27
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202510271222524" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117371139" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Investigating the Relationship between Social Responsibility and Firm Performance: The Moderating Effect of Financial Leverage</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-21
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202510211221963" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117372120" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Economic Fluctuations, Managerial Ownership and Firm Value</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-11
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202510111220782" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117373551" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Influential Role of Independent Auditors in Mitigating Agency Conflicts between Managers and Shareholders</div>
+                        <div class="paper-meta">
+                            Published: 2025-10-11
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202510111220781" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117365694" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Investigating the Effects of Cost Leadership Strategy and Product Differentiation on the Comparability of Financial Statements of Firms</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-24
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202509241219037" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117366655" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-08
+                            <a href="https://doi.org/https://doi.org/10.2308/1554-1908-22-2.201" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414708192" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-08
+                            <a href="https://doi.org/https://doi.org/10.2308/1554-1908-22-2.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414708210" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Challenges for Leveraging Explainable Artificial Intelligence in Audit Procedures</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-044" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414498778" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">An Exploratory Study on Auditing Standards for Embracing New Technologies: Remote Inventory Observation</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-033" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414608601" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Impact of Perceived Trust in a Centralized versus Decentralized IT Architecture on IT Risk Assessment and Assurance</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-034" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414609448" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Impact of the COVID-19 Crisis on the Speed of Adjusting the Commercial Credit of Companies, Considering the Ability of Managers</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-29
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202508291216338" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117354291" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Implementing a Capital Contract Framework for Silent Shareholders: The Role of Blockchain-Enabled Smart Contracts</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-026" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413847504" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploring the Research–Practice Divide in Accounting: Insights from Text Analytics</div>
+                        <div class="paper-meta">
+                            Published: 2025-08-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-042" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4413047024" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Determinants of Corporate Sustainability in Emerging Markets: Evidence from the Tehran Stock Exchange</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-26
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202507241212950" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117354649" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using Data Analytics to Analyze Wind Turbine Upgrade Decisions: An ESG Case</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-25
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-046" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412912894" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Impact of Blockchain Technology on Enhancing Transparency and Security of Financial Reporting: Opportunities and Challenges</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-20
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202507201212508" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117367886" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Blockchain Fundamentals for Accounting Courses: Bridging the Profession-Education Gap</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2020-069" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412611410" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Topic Classification of Public Sector Accounting Research: A BERT-Based Approach</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-019" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412526637" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Addressing the Last Mile Problem in Open Government Data: Using AIS Technologies to Enhance Governmental Financial Reporting</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-018" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412200832" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Hey ChatGPT—Is a Louis Vuitton Bag an Investment? Evaluating LLM Readiness for Use in Financial Literacy and Education</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-066" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412805970" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">How Deutsche Telekom Uses Emerging Technologies to Enhance the Internal Control System</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-26
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-054" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411674980" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Next-Generation Gamification in Accounting Education: Digital-Role Play Games (D-RPGs) with Generative AI (GAI)</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-26
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-012" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411689131" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Insider Threats: Gaining an Appreciation of the Risks of Endpoint Access by Departing Employees</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-20
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2022-059" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411487523" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">ChatGPT-4: Can It Handle Real-World Accounting Cases?</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-05
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-028" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411055396" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Role of Intellectual Capital Efficiency and Its Components in Predicting Stock Returns</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-02
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202506011208525" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117358126" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Exploratory Experiments in Generating Bag of Word Dictionaries Using Word2Vec and ChatGPT</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-013" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411368861" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Fair-Value Measurement for Illiquid and Unexchangeable Crypto Assets</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-28
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-006" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410809678" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Effect of Tax Incentives and Tax Services on Taxpayer Compliance and the Moderating Role of Tax Socialization</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-18
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202505181207258" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117384104" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Business Education 4.0: A Pedagogical Emphasis on Innovation, Flexibility, and Scalability</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-05
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-029" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410086165" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Delineating Responsibilities for COBIT 2019 IT Control Activities Between Cloud Service Providers and Cloud Service Users</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-063" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410556586" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Demonstration of How ChatGPT and Generative AI Can be Used in the Internal Auditing Process</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-25
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-041" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409801010" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Predicting the Class and Type of Critical Audit Matters</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-24
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-009" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409765455" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-21
+                            <a href="https://doi.org/https://doi.org/10.2308/1554-1908-22-1.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409036072" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-21
+                            <a href="https://doi.org/https://doi.org/10.2308/1554-1908-22-1.175" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409036226" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Visual Analytics and Visual Audit</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-28
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2022-063" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408047768" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Is ChatGPT an Accurate Source of Information for Uninformed Taxpayers?</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-20
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-072" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4407779934" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Investigating the Relationship between the Uncertainty of Economic Policies and the Fulfillment of Social Responsibilities, Considering the Role of Government Ownership</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-31
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202501311198167" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117360263" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Robotic Process Automation and Enterprise Systems: Toward Cost Efficiency</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-29
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2022-024" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406925829" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Utilizing Deep Learning for Field-Level Information Extraction from German Real Estate Tax Notices</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-09
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-028" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4405178477" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">How to Implement a Data Analytics and Emerging Technologies-Enabled Accounting Curriculum</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-02
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-040" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404913310" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">CPA Evolution and Curriculum Revolution: Building Value in the Accounting Profession Through CPA and CISA Dual Certification</div>
+                        <div class="paper-meta">
+                            Published: 2024-11-15
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-073" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404431306" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Unconditional Conservatism and Capital Cost: Explaining the Role of Corporate Social Responsibility</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-30
+                            <a href="https://doi.org/https://doi.org/10.82563/jetaaf.2025.202410301188958" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7117355503" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Support of Accounting by Bank Statement Classification Using Neural Networks</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-25
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2022-073" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403762233" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Mitigating Normal Form Violations Using Resources-Events-Agents, Resources-Events-Agents-Locations, and Hierarchy: A Knowledge-Based Approach</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-16
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-022" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403449134" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Adoption of Blockchain Technology on Company’s Internal Control System in Sales and Purchasing Cycle</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-16
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2023-062" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403450758" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-01
+                            <a href="https://doi.org/https://doi.org/10.2308/1554-1908-21-2.153" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403006615" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Impact of <i>JETA</i> As Measured by an AI Generated Taxonomy: Reaching Beyond Accounting</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-01
+                            <a href="https://doi.org/https://doi.org/10.2308/jeta-2024-023" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403043148" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 403 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="journal-card">
+                <div class="journal-header">
+                    <div class="journal-name">Journal of Information Systems</div>
+                    <div class="journal-code">JIS</div>
+                </div>
+                
+                <div class="journal-info">
+                    <div class="info-item">
+                        <div class="info-label">ISSN</div>
+                        <div class="info-value">1558-7959</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Papers Count</div>
+                        <div class="info-value">1171</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Source ID</div>
+                        <div class="info-value">S82262387</div>
+                    </div>
+                </div>
+
+                <div class="papers-list">
+
+                    <div class="paper-item">
+                        <div class="paper-title">Mandatory XBRL Adoption by U.S.-Listed Foreign Firms</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2025-031" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7118194107" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Three Lines, One Clock: Deadline-Driven Predictive Auditing to Mitigate Late-Payment Risk</div>
+                        <div class="paper-meta">
+                            Published: 2026-01-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-053" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7125423329" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Auditors’ Susceptibility to Affective Bias During Repeated Client Email Exchanges with Mixed Evidence</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-076" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W7118160027" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Effects of Blockchain Technology Adoption on Litigation Risks</div>
+                        <div class="paper-meta">
+                            Published: 2025-12-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-062" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4417126596" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Attention Management by Visual Salience in Environmental, Social, and Governance Report</div>
+                        <div class="paper-meta">
+                            Published: 2025-11-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-046" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4416212654" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Optimizing SEC Comment Letter Analysis with the CLARITY (Comment Letter Automated Retrieval and Intelligent Text Yielding) Process</div>
+                        <div class="paper-meta">
+                            Published: 2025-09-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-062" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4414155441" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">You Posted What? Analyzing Determinants of Social Technology Risk Prevention</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-054" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412002833" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Assessing the Maturity of Audit Data Analytics and Operational Performance</div>
+                        <div class="paper-meta">
+                            Published: 2025-07-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-007" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4412200485" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">From Pen-and-Paper to Technology-Driven Analytics: Technology Usage in Internal Auditing</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-16
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-052" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411339933" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Impact of Active Monitoring and Remote Work Arrangements on Potential Employees’ Engagement and Job Appeal: The Role of Trust</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-04
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-042" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411021466" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">A Survey on Blockchain-Based Triple-Entry Accounting in B2B Context</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-004" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411178150" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Development of a RAG-Based Artificial Intelligence Research Assistant (AIRA)</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-041" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411488219" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Detecting Suspicious Transactions Using Deep Learning-Based Process Mining</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-006" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411803900" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Effectively Preventing Adverse Investment Responses following Negative Rumors: The Joint Impact of the Counter-Rumor Source and Strategy Deniability</div>
+                        <div class="paper-meta">
+                            Published: 2025-06-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-040" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411488158" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Dataveillance Duality: Navigating Employee Accountability and Privacy Concerns in the Digital Age</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-29
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-050" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410859820" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using Machine Learning Algorithms to Improve Fiscal Distress Prediction Models: The Case of U.S. Local Governments</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-23
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-049" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410643310" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-20
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-39.2.157" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411844765" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-20
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-39.2.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4411844989" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using Supervised Learning Algorithms to Predict Discontinued Operations in Nonprofit Organizations</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-12
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2021-035" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410304043" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Robotic Process Automation Governance in Accounting Information Systems Research: A Multivocal Literature Review and Future Research Agenda</div>
+                        <div class="paper-meta">
+                            Published: 2025-05-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-061" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4410557427" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Does Blockchain Help Make the World Better? Analyzing the Effect of Blockchain Adoption on Environmental, Social, and Governance Performance of Firms</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-11
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-074" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409357796" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Effects of an Audit Partner’s Communication Medium and Use of Worked Examples on Auditors’ Skeptical Judgments and Actions</div>
+                        <div class="paper-meta">
+                            Published: 2025-04-09
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-028" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4409310065" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Do Auditor Change Announcements Trigger Information Acquisition?</div>
+                        <div class="paper-meta">
+                            Published: 2025-03-05
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-016" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408219471" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-05
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-39.1.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408073078" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2025-02-05
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-39.1.157" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4408068802" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Neuroaccounting: Integrating Neurophysiological Techniques into Accounting and Accounting Information Systems Research</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-30
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-061" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406968833" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Evaluating the Impact of Robotic Process Automation on Earnings Management</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-17
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-032" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406545714" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Automated Retrieval and Categorization of SEC Data Using Python</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-17
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-063" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406546181" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Using Semantic Similarity to Proxy for Knowledge Structures in Accounting Research</div>
+                        <div class="paper-meta">
+                            Published: 2025-01-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-010" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406828672" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Employees’ Reactions to Algorithmic Performance Evaluation: Threat of Evaluation Bias and Objectivity</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-02
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-011" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404939086" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">COSO Framework Adoption and Cybersecurity Breaches</div>
+                        <div class="paper-meta">
+                            Published: 2024-12-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-044" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4406140365" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">If the Tweet Fits: How Investors Process Financial Information Received via Social Media</div>
+                        <div class="paper-meta">
+                            Published: 2024-11-22
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2022-044" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404629067" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">CEOs’ Facial Trustworthiness and the Narrative Tone Differences of Bilingual Annual Reports</div>
+                        <div class="paper-meta">
+                            Published: 2024-11-19
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-005" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4404522663" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Content Adaptation in Online Streaming: How Streamers Utilize Game Updates to Improve Performance</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-07
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-031" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403987620" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-07
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-38.3.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403964408" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-07
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-38.3.e" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403964402" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Audit Quality Under Remote Working Arrangement: The Role of Technology Competency</div>
+                        <div class="paper-meta">
+                            Published: 2024-10-01
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-065" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4403451273" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Are All Pictures Worth 1,000 Words? An Investigation of Fit Between Graph Type and Performance on Accounting Data Analytics Tasks</div>
+                        <div class="paper-meta">
+                            Published: 2024-09-16
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-042" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4402769302" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Customer Information Technology Capability and Suppliers’ Commitments</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-23
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-025" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401800382" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Extracting Financial Data from Unstructured Sources: Leveraging Large Language Models</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-22
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-047" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401780550" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Integrating Process Mining and Machine Learning for Advanced Internal Control Evaluation in Auditing</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-22
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2022-028" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401778973" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Employee Ratings and Reviews Data from Glassdoor</div>
+                        <div class="paper-meta">
+                            Published: 2024-08-09
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-003" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401451580" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">iXBRL Adoption and the Pricing of Audit Services</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-29
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-034" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4401072946" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Environmental, Social, and Governance Committees and Information Technology Outcomes</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-09
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-050" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400453942" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Understanding Cybersecurity Maturity in Practice</div>
+                        <div class="paper-meta">
+                            Published: 2024-07-02
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2024-026" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400239660" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Editorial Policy</div>
+                        <div class="paper-meta">
+                            Published: 2024-06-14
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-38.2.e" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400213097" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Covers and Front Matter</div>
+                        <div class="paper-meta">
+                            Published: 2024-06-14
+                            <a href="https://doi.org/https://doi.org/10.2308/0888-7985-38.2.i" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4400213106" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">The Effects of IT Management Certification Type and Corporate Social Responsibility Performance on Investors’ Responses to Cybersecurity Breaches</div>
+                        <div class="paper-meta">
+                            Published: 2024-06-13
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-032" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4399603352" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Measuring Audit Quality with Surprise Scores: Evidence from China and the U.S.</div>
+                        <div class="paper-meta">
+                            Published: 2024-05-16
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2023-027" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4396980301" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item">
+                        <div class="paper-title">Outlier Detection in Auditing: Integrating Unsupervised Learning within a Multilevel Framework for General Ledger Analysis</div>
+                        <div class="paper-meta">
+                            Published: 2024-05-16
+                            <a href="https://doi.org/https://doi.org/10.2308/isys-2022-026" target="_blank" class="paper-link">DOI</a>
+                            <a href="https://openalex.org/W4396980313" target="_blank" class="paper-link">OpenAlex</a>
+                        </div>
+                    </div>
+
+                    <div class="paper-item" style="text-align: center; color: #666; font-style: italic;">
+                        ... and 1121 more papers
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        
+        <div class="footer">
+            Data fetched from <a href="https://openalex.org" target="_blank" style="color: #667eea;">OpenAlex</a> API
+        </div>
+    </div>
+</body>
+</html>
